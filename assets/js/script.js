@@ -1,17 +1,30 @@
 // use moment.js to display current day & time
 $('#currentDay').text(moment().format("dddd MMMM D, YYYY"))
-$('#currentTime').text(moment().format('hh:mm a'))
+// $('#currentTime').text(moment().format('hh:mm a'))
 
 function currentTime() {
+  let date = new Date()
   let hour = date.getHours()
   let min = date.getMinutes()
   let sec = date.getSeconds()
+  let midday = "AM";
   hour = updateTime(hour)
   min = updateTime(min)
   sec = updateTime(sec)
+  midday = (hour >= 12) ? "PM" : "AM";
+  hour = (hour == 0) ? 12 : ((hour > 12) ? (hour - 12) : hour);
 
-  $('currentTime').text(hour + ":" + min + ":" + sec)
+  $('#currentTime').text(hour + ":" + min + " " + midday)
+  let t = setTimeout(function () { currentTime() }, 1000)
 }
+function updateTime(k) {
+  if (k < 10) {
+    return "0" + k
+  } else {
+    return k
+  }
+}
+currentTime()
 
 // Define current hour
 let now = moment().hour()
@@ -62,14 +75,11 @@ $('.saveBtn').click(function () {
 
 
 let firstID = $('.time-block:first').attr('id')
-console.log(firstID)
 let firstHour = parseInt(firstID.split("hour-")[1])
-console.log(firstHour)
+
 
 let lastID = $('.time-block:last').attr('id')
-console.log(lastID)
 let lastHour = parseInt(lastID.split("hour-")[1])
-console.log(lastHour)
 
 for (i = firstHour; i < lastHour; i++) {
   $("#hour-" + i + " .description").val(localStorage.getItem("hour-" + i));
