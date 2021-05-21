@@ -8,4 +8,4 @@ https://diaseu.github.io/dailySchedule/
 
 ## Screenshot
 
-<img src="https://i.imgur.com/yuG1Dln.png">
+<img src="https://i.imgur.com/R4Zimn3.png" alt="Screenshot">
